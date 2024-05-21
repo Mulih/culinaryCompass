@@ -52,6 +52,22 @@ exports.exploreCategories = async(req, res) => {
         res.status(500).send({message: error.message || 'Something went wrong!'});
     }
 }
+/**
+ * GET /recipe/:id
+ * Recipe
+*/
+exports.exploreRecipe = async(req, res) => {
+
+    try {
+        let recipeId = req.params.id;
+        const recipe = await Recipe.findById(recipeId);
+
+
+        res.render('recipe', { title: 'CulinaryCompass - Recipe', recipe });
+    } catch (error) {
+        res.status(500).send({message: error.message || 'Something went wrong!'});
+    }
+}
 
 
 
