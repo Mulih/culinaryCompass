@@ -54,8 +54,6 @@ exports.exploreCategories = async(req, res) => {
 }
 
 
-
-
 /**
  * GET /categories/:id
  * Categories By Id.
@@ -70,8 +68,6 @@ exports.exploreCategoriesById = async(req, res) => {
         res.status(500).send({message: error.message || 'Something went wrong!'});
     }
 }
-
-
 
 /**
  * GET /recipe/:id
@@ -89,8 +85,15 @@ exports.exploreRecipe = async(req, res) => {
 }
 
 
+/**
+ * POST /search
+ * Search
+*/
 
 
+exports.searchRecipe = async(req, res) => {
+    res.render('search', { title: 'CulinaryCompas - Search' });
+}
 
 
 
