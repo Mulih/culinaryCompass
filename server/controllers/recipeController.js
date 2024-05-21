@@ -93,13 +93,13 @@ exports.exploreRecipe = async(req, res) => {
 
 exports.searchRecipe = async(req, res) => {
     try {
-        let searchTerm = req.body.searchTerm;
-        let recipe = await Recipe.find( { $text: { $search: searchTerm, $diacreticSensitive: true } } );
-
-        res.render('search', { title: 'CulinaryCompas - Search', recipe });
+      let searchTerm = req.body.searchTerm;
+      let recipe = await Recipe.find( { $text: { $search: searchTerm, $diacriticSensitive: true } });
+      res.render('search', { title: 'Cooking Blog - Search', recipe } );
     } catch (error) {
-        res.status(500).send({message: error.message || "error occured" });
+      res.satus(500).send({message: error.message || "Error Occured" });
     }
+
 }
 
 
