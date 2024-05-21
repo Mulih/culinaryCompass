@@ -85,9 +85,7 @@
     </div>
 
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-
-
-        <% if(food.thai !== 'undefined' && food.thai.length > 0) { %>
+        <% if(typeof food.thai !== 'undefined' && food.thai.length > 0) { %>
             <% food.thai.forEach(function(recipe, index){ %>
                 <a href="/recipe/<%= recipe._id %>" class="col tex-center category__link">
                     <div class="category__img category__img--large shadow">
@@ -97,8 +95,6 @@
                 </a>
             <% }) %>
         <% } %>
-
-
     </div>
 </section>
 
@@ -123,8 +119,6 @@
                 </a>
             <% }) %>
         <% } %>
-
-
     </div>
 </section>
 <!-- Chinese Start -->
@@ -136,8 +130,6 @@
     </div>
 
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-
-
         <% if(food.chinese != '') { %>
             <% food.chinese.forEach(function(recipe, index){ %>
                 <a href="/recipe/<%= recipe._id %>" class="col tex-center category__link">
@@ -148,10 +140,7 @@
                 </a>
             <% }) %>
         <% } %>
-
-
     </div>
-
 </section>
 
 
