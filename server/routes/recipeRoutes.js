@@ -9,7 +9,7 @@ router.get('/', recipeController.homepage);
 router.get('/recipe/:id', recipeController.exploreRecipe );
 router.get('/categories', recipeController.exploreCategories);
 router.get('/categories/:id', recipeController.exploreCategoriesById);
-router.post('/search', recipeController.searchRecipe);
+router.get('/search', recipeController.searchRecipe);
 
 router.get('/explore-latest', recipeController.exploreLatest);
 router.get('/show-random', recipeController.showRandom);
