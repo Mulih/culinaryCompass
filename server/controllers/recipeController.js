@@ -1,6 +1,7 @@
 require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
+const axios = require('axios');
 
 
 /**
@@ -76,9 +77,8 @@ exports.exploreCategoriesById = async(req, res) => {
 exports.exploreRecipe = async(req, res) => {
 
     try {
-        const { id } = req.params;
-        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
-        const recipe = response.data;
+        let recipeId = req.params.id;
+        const recipe = await Recipe.findById(recipeId);
         res.render('recipe', { title: 'CulinaryCompass - Recipe', recipe });
     } catch (error) {
         res.status(500).send({message: error.message || 'Something went wrong!'});
@@ -99,7 +99,7 @@ exports.exploreLatest = async(req, res) => {
     }
 }
 /**
- * GET /explore-latest
+ * GET /show-random
  * Recipe
 */
 exports.showRandom = async(req, res) => {
@@ -122,15 +122,15 @@ exports.showRandom = async(req, res) => {
 
 exports.searchRecipe = async(req, res) => {
     try {
-      let searchTerm = req.body.searchTerm;
-      let recipe = await Recipe.find( { $text: { $search: searchTerm, $diacriticSensitive: true } });
-      res.render('search', { title: 'Cooking Blog - Search', recipe } );
+        let searchTerm = req.query.searchTerm; // Changed from body to query
+        const apiKey = process.env.SPOONACULAR_API_KEY;
+        const response = await axios.get(`https://api.spoonacular.com/recipes/autocomplete?number=10&query=${searchTerm}&apiKey=${apiKey}`);
+        const recipes = response.data.results;
+        res.render('search', { title: 'Cooking Blog - Search', recipes });
     } catch (error) {
-      res.satus(500).send({message: error.message || "Error Occured" });
+        res.status(500).send({message: error.message || 'Something went wrong'});
     }
-
 }
-
 
 
 
