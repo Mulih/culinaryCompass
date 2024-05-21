@@ -92,7 +92,14 @@ exports.exploreRecipe = async(req, res) => {
 
 
 exports.searchRecipe = async(req, res) => {
-    res.render('search', { title: 'CulinaryCompas - Search' });
+    try {
+        let searchTerm = req.body.searchTerm;
+        let recipe = await Recipe.find( { $text: { $search: searchTerm, $diacreticSensitive: true } } );
+
+        res.render('search', { title: 'CulinaryCompas - Search', recipe });
+    } catch (error) {
+        res.status(500).send({message: error.message || "error occured" });
+    }
 }
 
 
