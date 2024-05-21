@@ -76,9 +76,39 @@ exports.exploreCategoriesById = async(req, res) => {
 exports.exploreRecipe = async(req, res) => {
 
     try {
-        let recipeId = req.params.id;
-        const recipe = await Recipe.findById(recipeId);
+        const { id } = req.params;
+        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
+        const recipe = response.data;
         res.render('recipe', { title: 'CulinaryCompass - Recipe', recipe });
+    } catch (error) {
+        res.status(500).send({message: error.message || 'Something went wrong!'});
+    }
+}
+/**
+ * GET /explore-latest
+ * Recipe
+*/
+exports.exploreLatest = async(req, res) => {
+
+    try {
+        const limitNumber = 20;
+        const recipe = await Recipe.find({}).sort({_id: -1}).limit(limitNumber);
+        res.render('explore-latest', { title: 'CulinaryCompass - Explore Latest', recipe });
+    } catch (error) {
+        res.status(500).send({message: error.message || 'Something went wrong!'});
+    }
+}
+/**
+ * GET /explore-latest
+ * Recipe
+*/
+exports.showRandom = async(req, res) => {
+
+    try {
+        let count = await Recipe.find().countDocuments();
+        let random = Math.floor(Math.random() * count);
+        let recipe = await Recipe.findOne().skip(random).exec();
+        res.render('explore-latest', { title: 'CulinaryCompass - Explore Latest', recipe });
     } catch (error) {
         res.status(500).send({message: error.message || 'Something went wrong!'});
     }
@@ -89,7 +119,6 @@ exports.exploreRecipe = async(req, res) => {
  * POST /search
  * Search
 */
-
 
 exports.searchRecipe = async(req, res) => {
     try {
