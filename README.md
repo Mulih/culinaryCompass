@@ -1,4 +1,4 @@
-This workspace contains a project called "Culinary Compass" created by Alvin Muli. The project is a recipe finder application. 
+This is a project called "Culinary Compass" created by Alvin Muli. The project is a recipe finder application. 
 
 ### What does this project do?
 The Culinary Compass project is a web application that allows users to find and explore various recipes. Users can register, log in, submit their own recipes, explore categories, view random recipes, and create shopping lists. The application aims to provide a platform for users to discover new recipes and manage their cooking preferences.
