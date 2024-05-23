@@ -8,6 +8,10 @@ router.route('/login')
   .get(userController.login)
   .post(userController.login);
 
+
+
+
+
 router.route('/shopping-list')
   .get(userController.shoppingList)
   .post(userController.shoppingList);

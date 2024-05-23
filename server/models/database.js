@@ -9,3 +9,5 @@ db.once('open', function(){
 
 require('./Category');
 require('./Recipe');
+require('./User');
+require('./ShoppingList');

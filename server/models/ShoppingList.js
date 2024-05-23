@@ -2,15 +2,20 @@ const mongoose = require('mongoose');
 
 const shoppingListSchema = new mongoose.Schema({
   user: {
-     type: mongoose.Schema.Types.ObjectId,
-     ref: 'User',
-     required: true
+     type: String,
+     required: true,
+     unique: true
     },
   items: [
     {
       recipe: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Recipe', required: true
+        ref: 'Recipe',
+        required: true
+      },
+      ingredient: {
+        type: String,
+        required: true
     },
       quantity: {
             type: Number,
@@ -22,5 +27,4 @@ const shoppingListSchema = new mongoose.Schema({
   dateCreated: { type: Date, default: Date.now }
 });
 
-const ShoppingList = mongoose.model('ShoppingList', shoppingListSchema);
-module.exports = ShoppingList;
+module.exports = mongoose.model('ShoppingList', shoppingListSchema);

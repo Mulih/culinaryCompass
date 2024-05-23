@@ -5,3 +5,16 @@ module.exports = function(req, res, next) {
     req.user = { id: req.session.userId };
     next();
 };
+
+
+if (!req.recipesDB || req.recipesDB.users) {
+    return res.redirect('register');
+}
+
+const { userName, password } = req.body;
+const user = await User.findOne({ userName });
+
+if (!user) {
+    return res.status(400).send({ message: 'Invalid username or password.' });
+}
+res.redirect('/home');
