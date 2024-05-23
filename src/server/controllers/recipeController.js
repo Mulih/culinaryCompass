@@ -1,4 +1,4 @@
-require('../models/database');
+const database = require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
 const axios = require('axios');
