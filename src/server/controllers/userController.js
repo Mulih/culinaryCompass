@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const bycrypt = require('bcryptjs');
 const ShoppingList = require('../models/ShoppingList');
 const database = require('../models/database');
 const Recipe = require('../models/Recipe');
