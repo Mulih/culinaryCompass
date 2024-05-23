@@ -5,10 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js ",
-    "build": "npm run build:static && npm run build:ejs",
-    "build:static": "webpack --mode production",
-    "build:ejs": "ejs . -o build"
+    "start": "nodemon app.js "
   },
   "repository": {
     "type": "git",
